@@ -1,0 +1,17 @@
+[user]
+	name = Jérôme Duval
+	email = jero.duval@gmail.com
+	username = jduval
+[github]
+	user = jduval
+[alias]
+	st = status
+	co = checkout
+	br = branch
+	d = diff
+	ci = commit
+	logz = log --format=format:"%C(auto)%h %C(green)%aN%Creset %s" --graph
+[color]
+	diff = auto
+	status = auto
+	branch = auto

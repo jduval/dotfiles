@@ -10,7 +10,7 @@
 	br = branch
 	d = diff
 	ci = commit
-	logz = log --format=format:"%C(auto)%h %C(green)%aN%Creset %s" --graph
+	logz = log --pretty=format:'%C(auto)%h %Cgreen%an%Creset %s' --graph
 [color]
 	diff = auto
 	status = auto

@@ -13,7 +13,8 @@ git_branch() {
   if [[ $st == "" ]]; then
     return
   else
-    echo " - %{$fg_bold[cyan]%}$(/usr/bin/git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})%{$reset_color%}"
+    # git display refs/heads/<branch_name>. We substract refs/heads/ to only display the branch name.
+    echo " - %{$fg_bold[cyan]%}$(/usr/bin/git symbolic-ref HEAD 2>/dev/null | awk {'print substr($0, 12)'})%{$reset_color%}"
   fi
 }
 

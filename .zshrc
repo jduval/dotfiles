@@ -15,9 +15,9 @@ setopt EXTENDED_GLOB
 # History
 # =============================================================================
 
-HISTSIZE=5000               # How many lines of history to keep in memory
+HISTSIZE=100000               # How many lines of history to keep in memory
 HISTFILE=~/.zsh_history     # Where to save history to disk
-SAVEHIST=5000               # Number of history entries to save to disk
+SAVEHIST=100000               # Number of history entries to save to disk
 setopt    appendhistory     # Append history to the history file (no overwriting)
 setopt    sharehistory      # Share history across terminals
 setopt    incappendhistory  # Immediately append to the history file, not just when a term is killed
@@ -41,28 +41,29 @@ unsetopt correct_all
 
 setopt share_history
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-export PATH="$HOME/google-cloud-sdk/bin:$PATH"
-export PATH="$HOME/bin:$PATH"
-source <(kubectl completion bash)
-ssh-add -K ~/.ssh/convargo
-
-export NVM_DIR="$HOME/.nvm"
-  . "/usr/local/opt/nvm/nvm.sh"
-
-[[ -s "/Users/jduval/.gvm/scripts/gvm" ]] && source "/Users/jduval/.gvm/scripts/gvm"
-
 # Go development
 # =============================================================================
-export GOPATH="${HOME}/.go"
+#export GOPATH="${HOME}/.go"
 #export GOROOT="$(brew --prefix golang)/libexec"
-export GOBIN="${GOPATH}/bin"
-export PATH="$PATH:${GOBIN}:${GOROOT}/bin"
-test -d "${GOPATH}" || mkdir "${GOPATH}"
-test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
+#export GOBIN="${GOPATH}/bin"
+#export PATH="$PATH:${GOBIN}:${GOROOT}/bin"
+#test -d "${GOPATH}" || mkdir "${GOPATH}"
+#test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
+
 export NODE_ENV=development
 
 autoload -U +X bashcompinit && bashcompinit
-complete -C $GOBIN/jarvis jarvis
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export GOOGLE_APPLICATION_CREDENTIALS="/Users/jerome/workspace/cooking-strava/gcloud-storage-keys.json"
+
+export CPPFLAGS=-I/usr/local/opt/openssl/include
+export LDFLAGS=-L/usr/local/opt/openssl/lib
+
+ssh-add ~/.ssh/id_ed25519_hiki
+
+source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
